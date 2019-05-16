@@ -1,0 +1,93 @@
+<%- include('../layouts/Header'); -%>
+<%- include('../layouts/CSS'); -%>
+<%- include('../layouts/endHeader'); -%>
+
+<div id="wrapper">
+  <%- include('../layouts/Sidebar'); -%>
+
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"></nav>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <div class="col-sm-10">
+          <div class="container">
+            <h5>รหัสวิชา :
+              <%=subject.sub_id%>
+            </h5>
+            <h5>ชื่อวิขา :
+              <%=subject.sub_name%>
+            </h5>
+            <hr>
+            <ul class="nav nav-tabs" style="float: left;">
+              <li class="nav-item"><a class="nav-link active">จัดการคอร์สเรียน</a></li>
+            </ul>
+            <button style="float: right;" type="submit" class="btn btn-success" data-toggle="modal" data-toggle="modal"
+              data-target=".addCourseModal">เพิ่มคอร์สเรียน</button>
+            <div style="clear: both"></div>
+            <div style="height: 400px !important; overflow: auto;">
+
+              <table class="table table-striped" style="text-align: center">
+                <thead>
+                  <tr>
+                    <td><b>กลุ่มเรียน</b></td>
+                    <!--
+                                       <td><b>อาจารย์ผู้สอน</b></td>
+                                  <td><b>นิสิต</b></td>
+                                  -->
+                    <td><b>จำนวนสินิตในคอร์ส</b></td>
+                    <td><b>จัดการคอร์สเรียน</b></td>
+                    <td><b>แก้ไข</b></td>
+                    <td><b>ลบ</b></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(var i=0; i < course.length; i++) { %>
+
+                  <tr>
+                    <td>
+                      <%= course[i].section %>
+                    </td>
+                    <td>
+                      <%=course[i].student.length%>
+                    </td>
+                    <!--
+                                          <td><a href="/manageCourse/teacherManage/<%= course[i]._id%>" class="btn btn-primary">จัดการอาจารย์</a></td>
+                                      <td><a href="/manageCourse/studentManage/<%= course[i]._id%>" class="btn btn-primary">จัดการนิสิต</a></td>
+                                      -->
+                    <td><a href="/manageCourse/courseInfo/<%= course[i]._id%>"
+                        class="btn btn-primary">จัดการคอร์สเรียน</a></td>
+                    <td>
+                      <button type="submit" class="btn btn-warning" data-toggle="modal" data-toggle="modal"
+                        data-target=".editcourseModal"
+                        onclick="editcourse('<%= course[i]._id %>','<%= course[i].course_teacher %>','<%= course[i].course_student %>','<%= course[i].course_test %>','<%= course[i].course_id %>','<%= course[i].course_name %>','<%= course[i].section %>')">แก้ไข</button>
+                    </td>
+                    <td><a href="/manageCourse/delete/<%= course[i]._id %>/<%= sub_id %>" class="btn btn-danger">ลบ</a>
+                    </td>
+                  </tr>
+
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+      </div>
+      <!-- End of Content Wrapper -->
+
+    </div>
+
+    <%- include('../modals/courseModal'); -%>
+    <%- include('../layouts/Bottom'); -%>

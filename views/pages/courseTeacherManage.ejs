@@ -1,0 +1,139 @@
+<%- include('../layouts/Header'); -%>
+<%- include('../layouts/CSS'); -%>
+<%- include('../layouts/endHeader'); -%>
+
+<div id="wrapper">
+  <%- include('../layouts/Sidebar'); -%>
+
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"></nav>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+          <div class="col-sm-10">
+            <div class="container">
+              <h4 style="float: right ;"> รายวิชา :
+                <%= course.sub_id.sub_id %> กลุ่มเรียน :
+                <%=course.section%>
+              </h4>
+              <br>
+              <h4>อาจารย์ทั้งหมด</h4>
+
+              <ul class="nav nav-tabs">
+                <li class="nav-item"><a class="nav-link active">จัดการอาจารย์</a></li>
+              </ul>
+              <div style="clear: both"></div>
+              <div style="height: auto !important; overflow: auto">
+                <table class="table table-striped" style="width: 100% ; height: auto;">
+                  <thead>
+                    <tr>
+                      <td><b>ชื่อ-นามสกุล</b></td>
+                      <td><b>คณะ</b></td>
+                      <td><b>สาขา</b></td>
+                      <td><b>ตำแหน่ง</b></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% 
+                      var arrTeacher = []
+                      for(var j = 0 ; j < course.teacher.length ; j++ ){
+                          arrTeacher.push(course.teacher[j]._id+'')
+                      }
+                      for(var i=0; i < person.length; i++) {
+                          if(!arrTeacher.includes(person[i]._id+'')){
+                              %>
+                    <tr>
+                      <td>
+                        <%= person[i].prefixName %>
+                        <%= person[i].firstName %>
+                        <%= person[i].lastName %>
+                      </td>
+                      <td>
+                        <%= person[i].faculty %>
+                      </td>
+                      <td>
+                        <%= person[i].major %>
+                      </td>
+                      <td>
+                        <%= person[i].position %>
+                      </td>
+                      <td>
+                        <a href="/manageCourse/teacherManage/addTeacher/<%= person[i]._id%>/<%= course._id%>"
+                          class="btn btn-primary">เลือก</a>
+                      </td>
+                    </tr>
+                    <% }} %>
+                  </tbody>
+                </table>
+              </div>
+              <hr>
+              <!--ตารางอาจารย์ที่เลือก-->
+              <div class="container">
+                <h4>อาจารย์ที่เลือก</h4>
+                <ul class="nav nav-tabs">
+                  <li class="nav-item"><a class="nav-link active">จัดการอาจารย์</a></li>
+                </ul>
+                <div style="clear: both"></div>
+                <div style="height: auto !important; overflow: auto">
+                  <table class="table table-striped" style="width: 100%">
+                    <thead>
+                      <tr>
+                        <td><b>ชื่อ-นามสกุล</b></td>
+                        <td><b>คณะ</b></td>
+                        <td><b>สาขา</b></td>
+                        <td><b>ตำแหน่ง</b></td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for(var i=0; i < course.teacher.length; i++) { %>
+                      <tr>
+                        <td>
+                          <%= course.teacher[i].prefixName %>
+                          <%= course.teacher[i].firstName %>
+                          <%= course.teacher[i].lastName %>
+                        </td>
+                        <td>
+                          <%= course.teacher[i].faculty %>
+                        </td>
+                        <td>
+                          <%= course.teacher[i].major %>
+                        </td>
+                        <td>
+                          <%= course.teacher[i].position %>
+                        </td>
+                        <td>
+                          <a href="/manageCourse/teacherManage/deleteTeacher/<%= course.teacher[i]._id%>/<%= course._id %>"
+                            class="btn btn-danger">ลบ</a>
+                        </td>
+                      </tr>
+
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!--ตารางอาจารย์ที่เลือก-->
+            </div>
+            <!--ตารางอาจารย์ทั้งหมด-->
+
+
+
+          </div>
+          <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+      </div>
+      <!-- End of Content Wrapper -->
+
+
+    <%- include('../layouts/Bottom'); -%>

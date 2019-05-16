@@ -1,0 +1,95 @@
+<%- include('../layouts/Header'); -%>
+<%- include('../layouts/CSS'); -%>
+<%- include('../layouts/endHeader'); -%>
+
+<div id="wrapper">
+    <%- include('../layouts/Sidebar'); -%>
+
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"></nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="col-sm-10">
+                    <div class="container">
+                        <button style="float: right;" type="submit" class="btn btn-success" data-toggle="modal"
+                            data-toggle="modal" data-target=".addSubjectModal">เพิ่ม</button>
+                        <ul class="nav nav-tabs" style="float: left;">
+                            <li class="nav-item"><a class="nav-link active">จัดการรายวิชา</a></li>
+                        </ul>
+                        <div style="clear: both"></div>
+                        <div style="height: 400px !important; overflow: auto;">
+
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <td><b>รหัสวิชา</b></td>
+                                        <td><b>ชื่อวิชา</b></td>
+                                        <td><b>หน่วยกิต</b></td>
+                                        <td><b>สถานะ</b></td>
+                                        <td><b>เปิด / ปิดรายวิชา</b></td>
+                                        <td><b>คอร์สเรียน</b></td>
+                                        <td><b>แก้ไข</b></td>
+                                        <td><b>ลบ</b></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(var i=0; i < subject.length; i++) { %>
+
+                                    <tr>
+                                        <td>
+                                            <%= subject[i].sub_id %>
+                                        </td>
+                                        <td>
+                                            <%= subject[i].sub_name %>
+                                        </td>
+                                        <td>
+                                            <%= subject[i].credit %>
+                                        </td>
+                                        <td>
+                                            <%= subject[i].sub_status %>
+                                        </td>
+                                        <td>
+                                            <a href="/manageSubject/change/<%= subject[i]._id %>"
+                                                class="btn btn-primary">ปิด/เปิด</a>
+                                        </td>
+                                        <td>
+
+                                            <a class="btn btn-primary"
+                                                href="/manageCourse/<%= subject[i]._id %>/">คอร์สเรียน</a>
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="btn btn-warning" data-toggle="modal"
+                                                data-toggle="modal" data-target=".editSubjectModal"
+                                                onclick="editSubject('<%= subject[i]._id %>','<%= subject[i].sub_id %>','<%= subject[i].sub_name %>','<%= subject[i].sub_status %>','<%= subject[i].semester %>','<%= subject[i].year %>')">แก้ไข</button>
+                                        </td>
+                                        <td><a href="manageSubject/delete/<%= subject[i]._id %>"
+                                                class="btn btn-danger">ลบ</a></td>
+                                    </tr>
+
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+
+    <%- include('../modals/subjectModal'); -%>
+    <%- include('../layouts/Bottom'); -%>

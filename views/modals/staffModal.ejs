@@ -1,0 +1,116 @@
+<div>
+    <!-- THIS IS ADD MODAL -->
+    <div class="modal fade addStaff" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <!-- Modal content -->
+            <h1 align="center">เพิ่มนิสิต</h1>
+  
+            <form method="post" action="/manageStaff/post">
+              <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="ชื่อผู้ใช้(รหัสนิสิต)">
+              </div>
+
+              <div class="form-group">
+                <select class="form-control" id="sel1" name="prefixName">
+                  <option>นาย</option>
+                  <option>นางสาว</option>
+                  <option>นาง</option>
+                </select>
+              </div>
+  
+              <div class="form-group">
+                <input type="text" class="form-control" name="firstName" placeholder="ชื่อ">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="lastName" placeholder="นามสกุล">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="faculty" placeholder="คณะ">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="major" placeholder="สาขา">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="position" placeholder="ตำแหน่ง">
+              </div>
+        
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </form>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+    <!-- END OF ADD MODAL -->
+  </div>
+  
+  <!-- THIS IS UPDATE MODAL -->
+  <div class="modal fade updateStaff" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <!-- Modal content -->
+          <h1 align="center">แก้ไข</h1>
+  
+          <form method="post" action="/manageStaff/update/">
+            <div class="form-group">
+              <input type="text" class="form-control" name="_id" id="_id" style="display: none">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="editusername" id="editusername">
+            </div>
+
+            <div class="form-group">
+              <select class="form-control" name="editprefixName" id="editprefixName">
+                <option>นาย</option>
+                <option>นางสาว</option>
+                <option>นาง</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control" name="editfirstName" id="editfirstName">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="editlastName" id="editlastName">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="editfaculty" id="editfaculty">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="editmajor" id="editmajor">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="editposition" id="editposition">
+            </div>
+            
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </form>
+        <!-- End of modal content -->
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- END OF UPDATE MODAL -->
+  
+  <script type="text/javascript">
+    var editStaff = (_id,username,prefixName,ID,firstName,lastName,faculty,major,position) => {
+      _id: $('#_id').val(_id)
+      username: $('#editusername').val(username)
+      prefixName: $('#editprefixName').val(prefixName)
+      firstName: $('#editfirstName').val(firstName)
+      lastName: $('#editlastName').val(lastName)
+      faculty: $('#editfaculty').val(faculty)
+      major: $('#editmajor').val(major)
+      position: $('#editposition').val(position)
+    }
+  </script>
