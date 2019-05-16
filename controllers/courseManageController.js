@@ -4,6 +4,7 @@ const Teacher = require('../models/modelTeacher')
 const Student = require('../models/modelStudent')
 const Subject = require('../models/modelSubject')
 const Exam = require('../models/modelExam')
+const Room = require('../models/modelRoom')
 
 module.exports = {
     index: (req, res) => {
@@ -162,6 +163,7 @@ module.exports = {
     manageTestRoom: (req, res) => {
         Room.find({}, (err, room) => {
             Exam.findById(req.params.examId, (err, exam) => {
+                console.log(exam)
                 res.render('pages/manageTestRoom', { exam: exam, room: room })
             }).populate('room')
         }).populate('building')
@@ -236,9 +238,9 @@ module.exports = {
     addTestRoom: (req, res) => {
         require('../models/modelRoom').findById(req.params.roomId, (err, room) => {
             Exam.findById(req.params.examId, (err, exam) => {
-
                 exam.room.push(room)
                 exam.save().then(result => {
+                    console.log(exam.room)
                     res.redirect(`/manageCourse/manageTestRoom/${req.params.examId}`)
                 })
             })

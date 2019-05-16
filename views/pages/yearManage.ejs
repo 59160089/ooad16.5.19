@@ -13,7 +13,7 @@
     <div id="content">
 
       <!-- Topbar -->
-      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"></nav>
+      <nav id="year" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"></nav>
       <!-- End of Topbar -->
 
       <!-- Begin Page Content -->
@@ -24,12 +24,12 @@
           <form method="post" action="/manageYear/update">
             <div class="form-group">
               ปีการศึกษาปัจจุบัน <br>
-              <input type="text" class="form-control" name="year" placeholder="ปีการศึกษาปัจจุบัน"
+              <input type="text" class="form-control" id="years" name="year" placeholder="ปีการศึกษาปัจจุบัน"
                 value="<%= year[0].year %>">
             </div>
             <div class="form-group">
               ภาคการศึกษา <br>
-              <select class="form-control" id="semester" name="semester">
+              <select class="form-control" id="semesters" name="semester">
                 <option hidden><%= year[0].semester %></option>
                 <option>ภาคต้น</option>
                 <option>ภาคปลาย</option>
@@ -37,7 +37,7 @@
               </select>
             </div>
 
-            <button type="submit" class="btn btn-info float-right">ยืนยัน</button>
+            <button onclick="setYear()" type="submit" class="btn btn-info float-right">ยืนยัน</button>
 
           </form>
         </div>

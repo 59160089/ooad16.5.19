@@ -9,5 +9,17 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
+  <script>
+      function loadYear () {
+        document.getElementById('year').innerHTML = sessionStorage.getItem('year')
+      }
+
+      function setYear () {
+        let years = document.getElementById('years').value
+        let semester = document.getElementById('semesters').value
+        sessionStorage.setItem('year' , `ปีการศึกษา : ${years} ภาคเรียน : ${semester}`)
+      }
+    </script>
+
   <title>SB Admin 2 - Dashboard</title>
  

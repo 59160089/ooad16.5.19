@@ -2,23 +2,28 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 var exam = new Schema({
-    season : String,       
+    season: String,
     date: String,
     timeStart: String,
     timeFinish: String,
-    status: String,
-    room : [{
-        building : {
-            type : Schema.Types.ObjectId,
-            ref : 'modelBuilding'
-        } ,
-        room : String
-    }]
-    ,     
+   // status: String,
+    room: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'room'
+        }
+    ]
+    ,
     score: [{
-        studentId: String,
-        point: String
+        point: String,
+        studentId: {
+            type: Schema.Types.ObjectId,
+            ref: 'modelStudent'
+        },
+        seatStatus: String
     }]
+    ,
+    examiner : [{type : Schema.Types.ObjectId , ref : 'User'}]
 }, { collation: 'exam' })
 
 module.exports = mongoose.model('modelExam', exam)

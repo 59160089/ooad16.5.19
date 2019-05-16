@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 
 module.exports = {
     check: (req, res) => {
+      
         let username = req.body.username
         User.findOne({ username: username }, function (err, user) {
             if (err) {
