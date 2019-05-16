@@ -3,6 +3,7 @@
 
 module.exports = {
         index: (req, res) => {
-            res.render('pages/teacherMenu')
+            console.log(req.params)
+            res.render('pages/adminMenu')
         }
 }

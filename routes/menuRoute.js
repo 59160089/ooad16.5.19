@@ -3,6 +3,8 @@ const router = express.Router();
 
 const Controller = require('../controllers/menuController')
 
-router.route('/').get(Controller.index)
+router.route('/admin').get(Controller.index)
+
+
 
 module.exports = router

@@ -23,7 +23,11 @@ var exam = new Schema({
         seatStatus: String
     }]
     ,
-    examiner : [{type : Schema.Types.ObjectId , ref : 'User'}]
+    examiner : [{type : Schema.Types.ObjectId , ref : 'User'}],
+    coruse : {
+        type : Schema.Types.ObjectId,
+        ref  : 'modelCourse'
+    }
 }, { collation: 'exam' })
 
 module.exports = mongoose.model('modelExam', exam)

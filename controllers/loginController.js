@@ -21,13 +21,13 @@ module.exports = {
                     //if login == true password correct
                     if (login) {
                         if (user.uType === 'teacher') {
-                            res.redirect('/menu')
+                            res.redirect('/menu/teacher')
                         } else if (user.uType === 'staff') {
-                            res.redirect('/menu')
+                            res.redirect('/menu/admin')
                         } else if (user.uType === 'student') {
-                            res.redirect('/menu')
+                            res.render('pages/studentMenu' , {user : user})
                         } else if (user.uType === 'admin') {
-                            res.redirect('/menu')
+                            res.redirect('/menu/admin')
                         } else {
                          
                             require('../models/modelYear').find({}, function (err , year) {
