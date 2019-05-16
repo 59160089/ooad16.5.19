@@ -12,7 +12,7 @@ router.route('/studentManage/addStudent/:idStudent/:courseId').get(Controller.ad
 router.route('/studentManage/deleteStudent/:idStudent/:courseId').get(Controller.deleteStudent)
 router.route('/addCourse').post(Controller.addCourse)
 router.route('/post').post(Controller.postCourse)
-router.route('/manageTestRoom/:examId').get(Controller.manageTestRoom)
+router.route('/manageTestRoom/:examId/:courseId').get(Controller.manageTestRoom)
 router.route('/deleteExam/:examId/:courseId').get(Controller.deleteExam)
 router.route('/update/:id').post(Controller.updateCourse)
 router.route('/delete/:id/:sub_id').get(Controller.deleteCourse)

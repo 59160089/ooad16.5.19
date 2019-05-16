@@ -11,6 +11,6 @@ router.route('/room/:id').get(Controller.room)
 router.route('/addRoom/:id').post(Controller.addRoom)
 router.route('/deleteRoom/:roomId/:buildingId').get(Controller.deleteRoom)
 router.route('/update/:id').post(Controller.updateRoom)
-router.route('/inRoom/:roomId/:examId').get(Controller.inRoom)
+router.route('/inRoom/:roomId/:examId/:courseId').get(Controller.inRoom)
 router.route('/clearRoom/:roomId/:buildingId').get(Controller.clearRoom)
 module.exports = router

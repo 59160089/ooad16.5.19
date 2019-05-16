@@ -164,7 +164,9 @@ module.exports = {
         Room.find({}, (err, room) => {
             Exam.findById(req.params.examId, (err, exam) => {
               //  console.log(exam)
-                res.render('pages/manageTestRoom', { exam: exam, room: room })
+              require('../models/modelCourse').findById(req.params.courseId , (err , course) =>{
+                res.render('pages/manageTestRoom', { exam: exam, room: room ,course:course})
+              })
             }).populate('room')
         }).populate('building')
     },

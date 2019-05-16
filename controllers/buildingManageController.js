@@ -125,10 +125,11 @@ module.exports = {
         })
     },
     inRoom: (req, res) => {
-        console.log("hu")
         Room.findById(req.params.roomId, (err, room) => {
             require('../models/modelExam').findById(req.params.examId, (err, exam) => {
-                res.render('pages/inRoom', { room: room, exam: exam })
+                require('../models/modelCourse').findById(req.params.courseId , (err , course) => {
+                    res.render('pages/inRoom', { room: room, exam: exam , course : course})
+                })
             })
         }).populate(['building', 'examiner'])
     },
