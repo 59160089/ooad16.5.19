@@ -8,12 +8,14 @@ module.exports = {
         User.findOne({ username: username }, function (err, user) {
             if (err) {
                 console.log(err)
-                console.log('1')
-                return res.render('pages/login', { err: true })
+                require('../models/modelYear').find({}, function (err , year) {
+                    res.render('pages/login', { err: true  , year : year}) 
+                })
             }
             if (!user) {
-                console.log('2')
-                return res.render('pages/login', { err: true })
+                require('../models/modelYear').find({}, function (err , year) {
+                    res.render('pages/login', { err: true  , year : year}) 
+                })
             } else {
                 bcrypt.compare(req.body.password, user.password, (err, login) => {
                     //if login == true password correct
@@ -27,10 +29,16 @@ module.exports = {
                         } else if (user.uType === 'admin') {
                             res.redirect('/menu')
                         } else {
-                            res.render('pages/login', { err: true })
+                         
+                            require('../models/modelYear').find({}, function (err , year) {
+                                res.render('pages/login', { err: true  , year : year}) 
+                            })
                         }
                     } else {
-                        res.render('pages/login', { err: true })
+                       
+                        require('../models/modelYear').find({}, function (err , year) {
+                            res.render('pages/login', { err: true  , year : year}) 
+                        })
                     }
                 })
             }

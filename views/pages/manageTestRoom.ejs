@@ -44,13 +44,14 @@
                                     
                                     <% 
                                     let arrExamRoom = []
-    
                                     for(let i = 0 ; i < exam.room.length ; i++){
-                                        arrExamRoom.push(room[i]._id+'')
+                                        arrExamRoom.push(exam.room[i]._id+'')
                                     }
-                                    
+                                    console.log(arrExamRoom)
                                     for(let i=0; i < room.length ; i++) {
+                                       
                                         if(!arrExamRoom.includes(room[i]._id+'')){
+                                            console.log(room[i]._id)
                                     %>
                                     <tr>
                                         <!--   <td>
